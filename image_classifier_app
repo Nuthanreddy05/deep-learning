@@ -1,0 +1,15 @@
+image_classifier_app/
+├── data/
+│   ├── train/
+│   │   ├── class1/
+│   │   └── class2/
+│   └── val/
+│       ├── class1/
+│       └── class2/
+├── model/
+│   └── saved_model.pth
+├── src/
+│   ├── train.py
+│   └── app.py
+├── requirements.txt
+└── README.md
