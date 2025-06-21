@@ -1,0 +1,18 @@
+import streamlit as st
+from transformers import pipeline
+
+@st.cache(allow_output_mutation=True)
+def get_classifier():
+    return pipeline("image-classification", model="model", device=0)
+
+st.title("🍅 Bean Disease Classification")
+st.write("Upload an image of a bean leaf to detect disease")
+
+clf = get_classifier()
+uploaded = st.file_uploader("Choose image", type=["jpg","png"])
+if uploaded:
+    img = uploaded.read()
+    st.image(img, caption="Uploaded Image", use_column_width=True)
+    preds = clf(img)
+    top = preds[0]
+    st.write(f"**Prediction:** {top['label']} with confidence **{top['score']:.2f}**")
